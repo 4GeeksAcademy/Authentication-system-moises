@@ -1,7 +1,84 @@
-/*
-    home.css: This website contains selectors only used in home.css
 
-    All pages share the styles on index.css but you should create 
-    one more css for each page that will contain the selected used 
-    on that page only (the ones not reused in other pages).
-*/
+.custom-form {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+h1.text-primary {
+    font-size: 2.5rem;
+    letter-spacing: 1px;
+}
+
+h1.text-primary,
+p.text-muted {
+    font-family: 'Arial', sans-serif;
+}
+
+.btn-outline-primary {
+    border-width: 2px;
+    border-color: #007bff;
+    color: #007bff;
+    font-weight: 500;
+}
+
+.btn-outline-primary:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.custom-modal {
+    border-radius: 10px;
+    border: none;
+    padding: 2rem; 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-50px);
+    opacity: 0;
+    animation: modalAppear 0.5s forwards; 
+}
+
+@keyframes modalAppear {
+    0% {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal-dialog {
+    max-width: 600px; 
+    margin: 1.5rem auto;
+}
+
+.modal-body {
+    padding: 2.5rem; 
+}
+
+.modal-body input {
+    margin-bottom: 2rem; 
+}
+
+.modal-dialog {
+    max-width: 450px;
+    margin: 1.5rem auto;
+}
+
+.modal-content {
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+button {
+    transition: all 0.3s ease-in-out;
+}
+
+button:hover {
+    transform: translateY(-2px);
+}
+

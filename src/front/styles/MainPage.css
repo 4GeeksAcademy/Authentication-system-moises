@@ -1,0 +1,22 @@
+.jumbotron {
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1.display-4 {
+    font-size: 3rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+p.lead {
+    font-size: 1.2rem;
+}
+
+hr.my-4 {
+    border-color: #e9ecef;
+}
