@@ -11,8 +11,8 @@ export const Home = ({ onLoginSuccess }) => {
 	const handleSubmit = async (event, isRegistering) => {
 		event.preventDefault();
 		const url = isRegistering
-			? 'https://upgraded-zebra-v6g4wwwq7w6qfwgqw-3001.app.github.dev/api/register'
-			: 'https://upgraded-zebra-v6g4wwwq7w6qfwgqw-3001.app.github.dev/api/login';
+			? 'https://super-space-couscous-v6g4wwwq77gvc6w7q-3001.app.github.dev/api/register'
+			: 'https://super-space-couscous-v6g4wwwq77gvc6w7q-3001.app.github.dev/api/login';
 		const method = 'POST';
 		const body = JSON.stringify({ email, password });
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 import { BackendURL } from "./component/backendURL";
@@ -9,10 +9,7 @@ import injectContext from "./store/appContext";
 const ProtectedRoute = ({ children }) => {
     const token = localStorage.getItem("token");
 
-    console.log("Token actual:", token);
-
     if (!token || token === "null" || token === "undefined") {
-        console.warn("Acceso denegado. Redirigiendo a la página principal.");
         return <Navigate to="/" replace />;
     }
 
@@ -20,18 +17,29 @@ const ProtectedRoute = ({ children }) => {
 };
 
 const Layout = () => {
-    const [userEmail, setUserEmail] = useState("");
+    const [userEmail, setUserEmail] = useState(localStorage.getItem("userEmail") || "");
     const basename = process.env.BASENAME || "";
+
+    useEffect(() => {
+        const storedEmail = localStorage.getItem("userEmail");
+        if (storedEmail) {
+            setUserEmail(storedEmail);
+        }
+    }, []);
 
     const onLoginSuccess = (token, email) => {
         if (token) {
-            console.log("Inicio de sesión exitoso. Guardando token:", token);
             localStorage.setItem("token", token);
+            localStorage.setItem("userEmail", email);
             setUserEmail(email);
             window.location.href = "/MainPage";
-        } else {
-            console.error("No se recibió token. Inicio de sesión fallido.");
         }
+    };
+
+    const onLogout = () => {
+        localStorage.removeItem("token");
+        localStorage.removeItem("userEmail");
+        setUserEmail("");
     };
 
     if (!process.env.BACKEND_URL || process.env.BACKEND_URL === "") return <BackendURL />;
@@ -41,15 +49,12 @@ const Layout = () => {
             <BrowserRouter basename={basename}>
                 <ScrollToTop>
                     <Routes>
-                        <Route
-                            element={<Home onLoginSuccess={onLoginSuccess} />}
-                            path="/"
-                        />
+                        <Route element={<Home onLoginSuccess={onLoginSuccess} />} path="/" />
                         <Route
                             path="/MainPage"
                             element={
                                 <ProtectedRoute>
-                                    <MainPage userEmail={userEmail} />
+                                    <MainPage userEmail={userEmail} onLogout={onLogout} />
                                 </ProtectedRoute>
                             }
                         />
